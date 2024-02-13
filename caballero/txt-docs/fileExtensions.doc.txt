@@ -1,0 +1,76 @@
+fileExtensions.doc.txt
+Caballero Website Management
+Jason M. Knight
+5 February 2023
+
+Key
+	[]      optional
+	...     zero or more
+	*text*  variable
+
+.config.php
+	A configuration file creating/loading data and setting DEFINE
+
+	GENERAL LOCATIONS:
+		/config
+		/errors
+		/pages
+		/pages[.../*subsection*],
+		/template/*templateName*
+
+.content.php
+
+	the information of a page to be plugged into the template as the
+	page content. PHP allowed.
+
+	GENERAL LOCATIONS:
+		/errors
+		/pages
+		/pages/*subsection*
+
+.doc.txt
+
+	A text file containing documentation of this system.
+
+	GENERAL LOCATIONS:
+		/docs
+
+.inc.php
+
+	A file that is blindly included. Typically contains no functions
+	or objects.
+
+	GENERAL LOCATIONS:
+		/errors
+		/includes
+
+.lib.php
+
+	Library file, holds functions and/or classes.
+
+	GENERAL LOCATIONS:
+		/libs
+
+.print.css
+
+	stylesheets for print media
+
+	GENERAL LOCATIONS:
+		/template/*templateName*
+
+.screen.css
+
+	stylesheets specific to screen media
+
+	GENERAL LOCATIONS:
+		/template/*templateName*
+
+.template.php
+
+	A template file. The "body.template.php" is a static file where
+	markup is allowed directly. Any other template files should wrap
+	their templates in functions.
+
+	GENERAL LOCATIONS:
+		/template/*templateName*
+

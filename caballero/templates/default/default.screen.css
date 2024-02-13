@@ -1,0 +1,381 @@
+/* Always queue fonts first */
+
+@font-face {
+	font-display:swap;
+	font-family:"interface";
+	font-style:normal;
+	font-weight:normal;
+	src:
+		url("fonts/interface-Regular.woff2") format("woff2"),
+		url("fonts/interface-Regular.woff") format("woff");
+}
+
+/* Custom props near top for easy access */
+
+body {
+
+	/* colours */
+	--chromeBgColor:#BDF;
+	--chromeTextColor:#012;
+	--flowBgColor:#FFF;
+	--flowTextColor:#024;
+	--modalOuterOverlay:#DEFC;
+	--modalBgColor:#FFF;
+	--borderColor:#246A;
+	--toolTipBgColor:#DEF;
+	--toolTipTextcolor:#000;
+	--buttonBgColor:#248;
+	--buttonTextColor:#FFF;
+	--varColor:#093;
+	
+	/* widths */
+	--flowPad:clamp(0.5rem, 2vw, 1.5rem);
+	--modalPad:clamp(0.5rem, 2vw, 1rem);
+	--headerPad:0.5rem var(--flowPad);
+	--footerPad:1rem var(--flowPad);
+	--mainPad: 1rem var(--flowPad);
+	--traceBorderWidth:0.0625rem;
+	--chunkBorderWidth:0.25rem;
+	--modalBorderRadius:1rem;
+}
+
+html,body,div,p,h1,h2,h3,h4,h5,h6,
+ul,ol,li,dl,dt,dd,form,fieldset,caption,legend,
+table,tr,td,th,address,blockquote,img {
+	margin:0;
+	padding:0;
+}
+
+img, fieldset {
+	border:none;
+}
+
+blockquote, q {
+	quotes:none;
+}
+
+body *, *:after, *:before {
+	box-sizing:border-box;
+}
+
+legend {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	display:block;
+}
+
+button, label, summary {
+	cursor:pointer;
+}
+
+html, body {
+	height:100%;
+	overflow:hidden;
+}
+
+body, button, input, table, textarea, select {
+	font-size:1rem;
+	line-height:1.5;
+	font-family:inherit;
+}
+
+body {
+	font-family:arial,helvetica,sans-serif;
+}
+
+#scrollFix,
+.modal,
+.modal > a {
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	overflow:auto;
+	scroll-behavior:smooth;
+}
+
+.modalClose_outer span,
+.modalClose_inner span {
+	position:absolute;
+	left:-100vw;
+}
+
+.modal {
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	padding:var(--flowPad);
+	left:-100vw;
+	opacity:0;
+	background:var(--modalOuterOverlay);
+	transition:opacity 0.5s, left 0s 0.5s;
+}
+
+.modal:target {
+	left:0;
+	opacity:1;
+	transition:opacity 0.5s;
+}
+
+.modal:target > a {
+	display:block; /* undo "hidden" */
+}
+
+.modal > div {
+	position:relative;
+	overflow:hidden;
+	max-width:40rem;
+	margin:auto;
+	background:var(--modalBgColor);
+	border:var(--traceBorderWidth) solid var(--borderColor);
+	border-radius:var(--modalBorderRadius);
+	scale:0;
+	transition:scale 0.5s;
+}
+
+.modal:target > div {
+	scale:1;
+}
+
+.modal > div > header {
+	display:flex;
+	align-items:center;
+	padding:0.75rem var(--modalPad);
+	background:var(--chromeBgColor);
+	border-bottom:var(--traceBorderWidth) solid var(--borderColor);
+}
+
+.modalClose_inner {
+	display:block;
+	flex-grow:0;
+}
+
+.modalClose_inner:before {
+	content:"\F00D";
+	font-family:interface;
+	font-size:1.5rem;
+	line-height:1;
+	color:var(--chromeTextColor);
+}
+
+.modal h2 {
+	flex-grow:1;
+	font-size:1.25rem;
+	line-height:1.2rem;
+}
+
+.modal header ~ * {
+	margin:1rem var(--flowPad);
+}
+
+#fauxBody {
+	display:flex;
+	flex-direction:column;
+	min-height:100%;
+}
+
+#fauxBody > header,
+#fauxBody > footer {
+	flex-grow:0;
+	background:var(--chromeBgColor);
+	color:var(--chromeTextColor);
+}
+
+#fauxBody > header {
+	padding:0.5rem 0;
+	border-bottom:var(--traceBorderWidth) solid var(--borderColor);
+}
+
+#fauxBody > footer {
+	padding:1rem 0;
+	line-height:1.25;
+	border-top:var(--traceBorderWidth) solid var(--borderColor);
+}
+
+#fauxBody > header > div,
+#fauxBody > footer > div,
+main > section,
+main > div > section {
+	padding:0 var(--flowPad);
+	width:100%;
+	max-width:48rem;
+	margin:0 auto;
+}
+
+main {
+	flex-grow:1;
+	margin:0 auto;
+}
+
+#fauxBody > header > div {
+	display:flex;
+	align-items:center;
+}
+
+h1 {
+	flex-grow:1;
+	font-size:1.25rem;
+}
+
+h1 ~ * {
+	flex-grow:0;
+}
+
+h1 a:before {
+	content:"l";
+	display:inline-block;
+	margin-right:0.2rem;
+	font-size:1.875rem;
+	line-height:1;
+	vertical-align:bottom;
+	font-family:interface;
+}
+
+main h2 {
+	font-size:1.5rem;
+}
+
+main h3 {
+	font-size:1.375rem;
+}
+
+main h4 {
+	font-size:1.25rem;
+}
+
+main h5 {
+	font-size:1.125rem;
+}
+
+main h6 {
+	font-size:1rem;
+}
+
+main section {
+	margin:1.5rem 0;
+}
+
+main p {
+	margin:0.5rem 0 1.5rem;
+}
+
+main var {
+	color:var(--varColor);
+}
+
+#fauxBody > header ul {
+	list-style:none;
+	display:flex;
+	align-items:center;
+}
+
+.actions a,
+#fauxBody > header h1 a,
+#fauxBody > header li a,
+#fauxBody > header li label {
+	position:relative;
+	display:inline-block;
+	text-decoration:none;
+	color:var(--chromeTextColor);
+	transition:scale 0.3s, color 0.3s;
+}
+
+#fauxBody > header li a,
+#fauxBody > header li label {
+	margin-left:1rem;
+}
+
+.actions a:focus,
+.actions a:hover,
+#mainMenu li a:focus,
+#mainMenu li a:hover {
+	scale:1.2;
+}
+
+.actions a,
+#mainMenu .featured a {
+	padding:0.125rem 0.5rem;
+	background:var(--buttonBgColor);
+	color:var(--buttonTextColor);
+	border-radius:0.5rem;
+}
+
+#fauxBody > footer h2 {
+	font-size:1rem;
+}
+
+#backToTop {
+	flex-grow:0;
+	position:sticky;
+	bottom:5rem;
+	display:block;
+	width:2.125rem;
+	z-index:999;
+	margin:0 1rem 0 auto;
+	opacity:0.5;
+	transition:opacity 0.3s;
+}
+
+#backToTop:hover,
+#backToTop:focus {
+	opacity:1;
+}
+
+#backToTop span {
+	position:absolute;
+	right:50%;
+	top:1.75rem;
+	padding:0.25rem 2rem 0.25rem 1rem;
+	white-space:nowrap;
+	background:var(--toolTipBgColor);
+	color:var(--toolTipTextColor);
+	border:var(--traceBorderWidth) solid var(--borderColor);
+	border-radius:1rem 0 0 1rem;
+	scale:0 1;
+	transform-origin:center right;
+	transition:scale 0.5s;
+}
+
+#backToTop:hover span,
+#backToTop:focus span {
+	scale:1;
+}
+
+#backToTop:after {
+	content:"\F062";
+	position:absolute;
+	top:1.75rem;
+	bottom:0;
+	display:block;
+	width:2.125rem;
+	height:2.125rem;
+	text-align:center;
+	font-family:interface;
+	font-size:1.5rem;
+	line-height:2.125rem;
+	border-radius:1.0625rem;
+	background:var(--buttonBgColor);
+	color:var(--buttonTextColor);
+	transition:scale 0.3s;
+}
+
+#backToTop:hover:after,
+#backToTop:focus:after {
+	scale:1.2;
+}
+
+#backToTop.hideScroll {
+	opacity:0;
+}
+
+
+.actions li {
+	display:inline;
+	list-style:none;
+}
+
+.actions a {
+	margin-right:1rem;
+}

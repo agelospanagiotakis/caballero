@@ -1,0 +1,87 @@
+.docs var {
+	font-weight:bold;
+	font-style:normal;
+	font-family:consolas,monospace;
+}
+
+.docs article p,
+.docs dl {
+	margin:0 0 1rem 2rem;
+}
+
+.docs dd,
+.docs h4 {
+	padding-left:2rem;
+}
+
+.docs h4 {
+	font-size:1rem;
+}
+
+.docs h4 + ul {
+	list-style:none;
+	margin:0 0 1rem 4rem;
+}
+
+.docs article {
+	padding-top:2rem;
+	margin-bottom:2rem;
+	border-top:var(--chunkBorderWidth) dotted var(--borderColor);
+}
+
+.docs header {
+	display:flex;
+	align-items:center;
+}
+
+.docs header > div {
+	flex-grow:1;
+}
+
+.key {
+	flex-grow:0;
+	margin-bottom:1rem;
+	border-collapse:collapse;
+}
+
+.key caption {
+	text-align:left;
+	font-weight:bold;
+	font-size:1.25rem;
+	background:var(--buttonBgColor);
+	color:var(--buttonTextColor);
+}
+
+.key caption,
+.key tr > * {
+	white-space:nowrap;
+	padding:0.25rem 0.75rem;
+}
+
+.key tr > * {
+	font-size:0.875rem;
+	border-bottom:0.0625rem solid var(--borderColor);
+}
+
+.key tr > *:first-child {
+	padding-left:1.5rem;
+	text-align:right;
+}
+
+.key tr > *:last-child {
+	text-align:left;
+	padding-right:1.5rem;
+}
+
+.key tr:nth-child(even) > * {
+	background:var(--chromeBgColor);
+}
+
+.subsectionIndex {
+	margin-bottom:1.5rem;
+}
+
+.subsectionIndex li {
+	list-style:none;
+	margin:0.5rem 0 0.5rem 2rem;
+}

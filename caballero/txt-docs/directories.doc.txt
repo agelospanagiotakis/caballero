@@ -1,0 +1,55 @@
+directories.doc.txt
+Caballero Website Management
+Jason M. Knight
+5 February 2023
+
+Key:
+	*text*  a variable value
+
+/
+  Root, holds favicons, index.php, and that's it.
+  
+/cache
+  location of static copies -- raw and gzip -- of pages
+  
+/config
+  files containing configuration data. Should all end in .config.php
+  
+/downloads
+  Where files the user can download are hosted
+  
+/errors
+  .config.php and .content.php files for building error pages.
+  
+/images
+  Content images
+  
+/includes
+  Files that contain static code to be executed directly. Should be ".inc.php"
+  
+/libs
+  Library files containing functions and objects, ".lib.php"
+  
+/modals
+	.config.php and .content.php files for modal dialogs
+  
+/pages
+  contains .config.php and .content.php files holding page content.
+  
+/templates
+  unique template directories
+  
+/templates/default
+  the default template.
+  
+/template/*templateName*
+  location of .template.php and various CSS files for a specific template
+  
+/template/*templateName*/fonts
+  webfonts specific to a template
+  
+/template/*templateName*/images
+  images specific to a template such as backgrounds
+  
+/txt-docs
+  text files explaining the system... like this one.

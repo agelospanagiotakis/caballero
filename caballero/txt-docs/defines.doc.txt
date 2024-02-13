@@ -1,0 +1,364 @@
+defines.doc.txt
+Caballero Website Management
+Jason M. Knight
+6 February 2023
+
+See definePrefixes.doc.txt for the master list of defined prefixes
+
+Key
+	[ DEFINE ] -- the file pointed to by the listed define
+	; -- start of a comment at end of line
+	
+When used inside a function instead of normal script, list that
+function tabbed in under its host file name.
+
+************************************************************************
+
+CACHE_RAW
+
+	The path to where an optional non gzipped copy of the current page
+	should reside. 
+	
+	Created
+		index.php
+		
+	Used
+		includes/checkCache.inc.php
+		libs/outputBuffer.lib.php
+		
+************************************************************************
+
+CACHE_GZ
+
+	Path to the gzipped cache of the current page, if any.
+	
+	Created
+		index.php
+	
+	Used
+		includes/checkCache.inc.php
+		libs/outputBuffer.lib.php
+		
+************************************************************************
+
+ERROR_STRING
+	
+	The string sent as a HTTP header() on error.
+	
+	Created
+		errors/error.inc.php
+		
+	Used
+		errors/error.inc.php
+		TEMPLATE_DIR/error.template.php
+		
+************************************************************************
+
+ERROR_TITLE
+	
+	The title of an HTTP error code, basically the part of the
+	HTTP header after the protocol declaration
+	
+	Examples:
+		"404 Not Found"
+		"400 Bad Request"
+		
+	Created
+		errors/[name].config.php
+		
+	Used
+		errors/error.inc.php
+		TEMPLATE_DIR/error.template.php
+		
+	Indirectly Used
+		PAGE_TITLE == ERROR_TITLE
+
+************************************************************************
+
+FILE_ROOT
+
+	The directory our index.php is in, derived from __FILE__ at startup.
+	
+	Created
+		index.php
+		
+	Used
+		includes/buildPage.inc.php
+		
+************************************************************************
+
+HTML_CHARSET
+
+	The character encoding of the site
+	
+	Created
+		config/site.config.php
+		
+	Used
+		index.php
+		includes/buildPage.inc.php
+		
+************************************************************************
+
+HTML_NOCACHE
+	
+	Disables caching site-wide or for specific pages
+	
+	Created
+		site.config.php ; for site-wide disabling
+		[ PAGE_CONFIG ] ; for specific page
+		/errors/errors.inc.php
+		
+	Used
+		libs/outputBuffer.lib.php
+			in anonymous shutdown function
+		
+************************************************************************
+
+HTML_NOMINIFY
+	
+	Disables minification
+	
+	Created
+		site.config.php ; for site-wide disabling
+		[ PAGE_CONFIG ] ; for specific page
+		
+	Used
+		libs/outputBuffer.lib.php
+			Outputbuffer::add
+			
+************************************************************************
+
+HTTP_BASE
+
+	The basename of REQUEST_URI. If none is provided this will default to "index"
+	
+	Created
+		index.php
+		
+	Used
+		index.php 
+		
+************************************************************************
+
+HTTP_ROOT
+
+	The directory of our index.php as accessed from the web.
+	
+	Created
+		index.php
+		
+	Used
+		index.php
+		
+************************************************************************
+
+HTTP_GZIPTYPE
+	
+	The string extracted from ACCEPT_ENCODING used in the HTTP
+	header to designate a gzip compressed format.
+	
+	Values
+		"gzip", "x-gzip", or "x-compress"
+		
+	Created
+		index.php
+		
+	Used
+		libs/outputBuffer.lib.php
+			in anonymous shutdown function
+		includes/cacheCheck.inc.php
+		
+************************************************************************
+
+ICON_MASKCOLOR
+
+	The color to be used for Apple "mask" SVG Icons
+	
+	Values
+		Any valid CSS color
+		
+	Default if not declared
+		#777
+		
+	Created
+		Optional, but typically config/site.config.php
+		
+	Used
+		includes/buildPage.inc.php
+	
+************************************************************************
+
+PAGE_BASE
+
+	The basename used to build caching files
+	
+	Created
+		index.php
+		
+	Used
+		index.php
+		
+************************************************************************
+
+PAGE_CONFIG
+
+	Path to the current page configuration file. Typically set to
+	PAGE_PATH . '.config.php'
+	
+	Created
+		index.php
+		
+	Used
+		index.php
+		includes/checkCache.inc.php
+		includes/buildPage.inc.php
+		
+************************************************************************
+
+PAGE_CONTENT
+
+	Path to the current page content file. Could be one of either
+	
+	Known/valid values
+		PAGE_PATH . '.content.php'
+		PAGE_PATH . '.handler.php'
+	
+	Created
+		index.php
+		
+	Used
+		index.php
+		includes/checkCache.inc.php
+		TEMPLATE_DIR/body.template.php
+	
+************************************************************************
+
+PAGE_LANG (optional)
+
+	The HTML language encoding of the current page
+	
+	Created (remember, this is optional)
+		[ PAGE_CONFIG ]
+		
+	Default
+		SITE_TITLE ?? "en"
+		
+	Used
+		libs/htmlHeaderFooter.lib.php
+			HTMLHead::output()
+		
+************************************************************************
+
+PAGE_PATH
+
+	Path to the configuration and content files
+	
+	Created
+		index.php
+		
+	Used
+		index.php
+		
+************************************************************************
+
+PAGE_REQUEST
+
+	Either "content" or "handler", see PAGE_TYPE for more information
+
+	Created
+		index.php
+		
+	Used
+		index.php
+		".handler.php" files in the /pages directory.
+
+************************************************************************
+		
+PAGE_TITLE (optional)
+	
+	Used to generate H1, body > footer, and TITLE content.
+	Should be left undefined for the home page (index) and defined
+	for all other subpages.
+	
+	Created
+		[ PAGE_CONFIG ]
+		errors/error.inc.php
+		
+	Used
+		libs/htmlHeaderFooter.lib.php
+			HTMLHead::output()
+		TEMPLATE_DIR/body.template.php
+		
+************************************************************************
+	
+PAGE_TYPE
+
+	The type of file used, either "content" or "handler". If "content"
+	a static include will be used using the full path, hypens will be
+	changed into slashes. If "handler" the file will be called direct
+	from the /pages directory with anything after the first hyphen 
+	turned into the array PAGE_REQUEST
+	
+	Created
+		index.php
+		
+	Used
+		index.php
+
+************************************************************************
+
+SITE_LANG (optional)
+
+	The HTML language encoding of the site
+	
+	Created (remember, this is optional)
+		config/site.config.php
+		
+	Default
+		"en"
+		
+	Used
+		libs/htmlHeaderFooter.lib.php
+			HTMLHead::output()
+		
+************************************************************************
+
+SITE_TITLE
+	
+	The name of the website. Used to generate TITLE tag
+	
+	Created
+		site.config.php
+		
+	Used
+		libs/htmlHeaderFooter.lib.php
+			HTMLHead::output()
+
+************************************************************************
+
+TEMPLATE_DIR
+
+	Path to the current template directory
+	
+	Created
+		index.php
+	
+	Used
+		includes/buildPage.inc.php
+		libs/common.lib.php
+			load_template()
+			
+************************************************************************
+
+TEMPLATE_NAME
+
+	name of the current template, used to build TEMPLATE_DIR and for naming cached pages
+	
+	Created
+		index.php
+		
+	Used
+		index.php
+		includes/checkCache.inc.php
+		includes/buildPage.inc.php

@@ -10,13 +10,13 @@ https://cutcodedown.com/caballero/
 
 ## How to start 
 
-Copy example environment and edit the PROJECT_BASE_URL to match the needed subdomain for example caballero.docker.localhost
+Copy example environment variable file (.env) and edit the PROJECT_BASE_URL to match the needed subdomain for example caballero.docker.localhost
 ```
-mv .env.example .env
+cp .env.example .env
 nano .env 
 ```
 
-add this line to 
+add this line to your hosts file (/etc/hosts) 
 ```
 127.0.0.1 *.docker.localhost
 ```
@@ -27,7 +27,7 @@ nano /etc/hosts
 
 
 
-start trefik and portainer
+start traefik and portainer
 ```
 cd localdevtools
 docker-compose up -d 
